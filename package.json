@@ -1,0 +1,19 @@
+{
+  "name": "wifi-scanner",
+  "version": "1.0.0",
+  "description": "a fun tool",
+  "main": "main.js",
+  "scripts": {
+    "test": "node main.js"
+  },
+  "keywords": [
+    "wifi-scanner"
+  ],
+  "author": "opiumdev",
+  "license": "MIT",
+  "dependencies": {
+    "node-wifi": "^2.0.16",
+    "node-wifi-scanner": "^1.1.3",
+    "systeminformation": "^5.23.5"
+  }
+}
