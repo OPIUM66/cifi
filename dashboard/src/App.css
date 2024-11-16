@@ -1,0 +1,103 @@
+/* General Reset */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/* App Container */
+.App {
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Header */
+.header {
+  padding: 20px;
+  font-size: 1.5rem;
+  border-bottom: 1px solid #333;
+  background-color: #1e1e1e;
+}
+
+/* Content */
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Network List */
+.network-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.network-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  margin: 10px 0;
+  border: 1px solid #333;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.network-item:hover {
+  background-color: #333;
+}
+
+.wifi-icon {
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+
+.secure {
+  font-size: 1.2rem;
+  color: #f39c12;
+}
+
+/* Footer Buttons */
+.footer-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007aff;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #005bb5;
+}
+
+/* Connection Info */
+.connection-info {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #1e1e1e;
+  border-radius: 5px;
+}
+
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  height: 2px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  margin: 20px auto;
+}

@@ -14,16 +14,14 @@ class Wifi {
             iface: null // network interface, choose a random wifi interface if set to null
         });
         this.si = require('systeminformation');
-        await this.scrapNetwork()
-        await this.test()
     }
 
     async all() {
-        return await new Promise( async (resolve , reject) => {
+        return await new Promise(async (resolve, reject) => {
             try {
-                await this.si.wifiNetworks((data) => {                    
+                await this.si.wifiNetworks((data) => {
                     resolve(data);
-                }); 
+                });
             } catch (error) {
                 console.log('Error while scanning wifi ', error);
                 reject(error);
@@ -37,11 +35,11 @@ class Wifi {
         this.networks = [];
         wifis.forEach(network => {
             this.networks.push(network);
-            this.ssids.push(network.ssid);    
+            this.ssids.push(network.ssid);
         });
-        return this.ssids;
+        return this.networks;
     }
-    
+
     async isConnected(into = false) {
         const current = await this.wifi.getCurrentConnections();
         if (into && typeof into === 'string' && current[0]?.ssid === into) {
@@ -53,22 +51,34 @@ class Wifi {
         }
     }
 
-    async test() {
-        console.log(this.ssids);        
-        console.log(this.networks);
-    
-        await this.wifi.connect({ssid: 'iPhone' , password: 'meowmeow'} , async () => {
-            if (this.isConnected()) {
-                console.log('Connected');
-            } else {
-                console.log('Failed to connect');
-                
+    async connect(ssid, password) {
+
+        this.wifi.connect({ ssid, password })
+        await new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(true)
+            }, 2000);
+        });
+        let status = await this.isConnected(ssid);
+        if (!status) {
+            return false;
+        }
+        status = (status[0]) ? status[0] : status
+        
+            if (status.security === 'Unknown') {
+                return false;
             }
-            
-            
-        })     
+            if (status.security_flags === 'None') {
+                return false;
+            }
+            if (status.ssid !== ssid) {
+                return false;
+            }
+
+            return true
+
     }
 }
 
 
-const wi = new Wifi();
+module.exports = Wifi;
